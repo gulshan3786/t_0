@@ -1,0 +1,49 @@
+<!-- views/results.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Results</title>
+  <head>
+    <style>
+        table,th,tr{
+            border: 1px solid black;
+        }
+        th{
+            background-color: rgb(219, 231, 177);
+        }
+        tr{
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+  <center><h1> Query Results</h1></center>
+<center><button><a href="pagination/?page=1">Paginate</a></button></center>
+ 
+  
+  
+<center>
+  <table>
+    <thead>
+      <tr>
+        <% for (const field in data[0]) { %>
+          <th><%= field %></th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(row => { %>
+        <tr>
+          <% for (const field in row) { %>
+            <td><%= row[field] %></td>
+          <% } %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</center>
+</body>
+</html>

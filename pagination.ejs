@@ -1,0 +1,65 @@
+<!-- views/results.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Results</title>
+  <style>
+    table,th,tr{
+        border: 1px solid black;
+    }
+    th{
+        background-color: rgb(219, 231, 177);
+    }
+    tr{
+        background-color: darkgray;
+    }
+</style>
+</head>
+<body>
+  <center><h1>Pagination Results</h1></center>
+
+ 
+  <center>
+    <% if (page == 1) { %>
+      <button type="button" disabled><<</button>
+      <button type="button" disabled><</button>
+      <button type="button"><a href="?page=<%= page + 1 %>">></a></button>
+      <button type="button"><a href="?page=<%= totalPages %>">>></a></button>
+  <% } else if (page == totalPages) { %>
+      <button type="button"><a href="?page=1"><<</a></button>
+      <button type="button"><a href="?page=<%= page - 1 %>"><</a></button>
+      <button type="button" disabled>></button>
+      <button type="button" disabled>>></button>
+  <% } else { %>
+      <button type="button"><a href="?page=1"><<</a></button>
+      <button type="button"><a href="?page=<%= page - 1 %>"><</a></button>
+      <button type="button"><a href="?page=<%= page + 1 %>">></a></button>
+      <button type="button"><a href="?page=<%= totalPages %>">>></a></button>
+  <% } %>
+  
+  </center>
+  <center>
+  <table>
+    <thead>
+      <tr>
+        <% for (const field in data[0]) { %>
+          <th><%= field %></th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(row => { %>
+        <tr>
+          <% for (const field in row) { %>
+            <td><%= row[field] %></td>
+          <% } %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</center>
+</body>
+</html>
